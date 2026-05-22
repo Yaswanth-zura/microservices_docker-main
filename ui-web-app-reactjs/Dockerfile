@@ -1,6 +1,13 @@
-FROM node:8
+FROM node:14
+
 WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install --legacy-peer-deps
+
 COPY . .
-RUN npm install
+
 EXPOSE 8080
-CMD ["npm","start"]
+
+CMD ["npm", "start"]
