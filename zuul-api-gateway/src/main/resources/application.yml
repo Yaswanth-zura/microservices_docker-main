@@ -4,6 +4,7 @@ zuul:
   routes:
     offer:
       path: /offer/**
+<<<<<<< HEAD
       url: http://40.192.3.76:1001/api/v1
     shoe:
       path: /shoe/**
@@ -14,3 +15,15 @@ zuul:
     cart:
       path: /cart/**
       url: http://40.192.3.76:1004/api/v1
+=======
+      url: http://40.192.105.193:1001/api/v1
+    shoe:
+      path: /shoe/**
+      url: http://40.192.105.193:1002/api/v1
+    wishlist:
+      path: /wishlist/**
+      url: http://40.192.105.193:1003
+    cart:
+      path: /cart/**
+      url: http://40.192.105.193:1004/api/v1
+>>>>>>> a2c46c8718d4e6821fc70f842786372fe3d86edf
