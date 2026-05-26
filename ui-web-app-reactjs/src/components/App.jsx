@@ -9,7 +9,7 @@ const App = () => {
 
   const handleApiCall = async (e) => {
 
-    const url = 'http://40.192.3.76:9999/'+e.target.name;
+    const url = 'http://'+window.location.hostname+':9999/'+e.target.name;
 
     const url = 'http://40.192.105.193:9999/'+e.target.name;
 
