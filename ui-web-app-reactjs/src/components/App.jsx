@@ -11,8 +11,6 @@ const App = () => {
 
     const url = 'http://'+window.location.hostname+':9999/'+e.target.name;
 
-    const url = 'http://40.192.105.193:9999/'+e.target.name;
-
     displayData.url=url
     let options = {}
       try {
