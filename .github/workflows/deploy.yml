@@ -45,6 +45,61 @@ jobs:
           docker push \
           663566123253.dkr.ecr.ap-south-2.amazonaws.com/devops:ui-github-v2
 
+      - name: Build Zuul Image
+        run: |
+          docker build \
+          -t 663566123253.dkr.ecr.ap-south-2.amazonaws.com/devops:zuul-github-v2 \
+          ./zuul-api-gateway
+
+      - name: Push Zuul Image
+        run: |
+          docker push \
+          663566123253.dkr.ecr.ap-south-2.amazonaws.com/devops:zuul-github-v2
+
+      - name: Build Offers Image
+        run: |
+          docker build \
+          -t 663566123253.dkr.ecr.ap-south-2.amazonaws.com/devops:offers-github-v2 \
+          ./offers-microservice-spring-boot
+
+      - name: Push Offers Image
+        run: |
+          docker push \
+          663566123253.dkr.ecr.ap-south-2.amazonaws.com/devops:offers-github-v2
+
+      - name: Build Shoes Image
+        run: |
+          docker build \
+          -t 663566123253.dkr.ecr.ap-south-2.amazonaws.com/devops:shoes-github-v2 \
+          ./shoes-microservice-spring-boot
+
+      - name: Push Shoes Image
+        run: |
+          docker push \
+          663566123253.dkr.ecr.ap-south-2.amazonaws.com/devops:shoes-github-v2
+
+      - name: Build Wishlist Image
+        run: |
+          docker build \
+          -t 663566123253.dkr.ecr.ap-south-2.amazonaws.com/devops:wishlist-github-v2 \
+          ./wishlist-microservice-python
+
+      - name: Push Wishlist Image
+        run: |
+          docker push \
+          663566123253.dkr.ecr.ap-south-2.amazonaws.com/devops:wishlist-github-v2
+
+      - name: Build Cart Image
+        run: |
+          docker build \
+          -t 663566123253.dkr.ecr.ap-south-2.amazonaws.com/devops:cart-github-v2 \
+          ./cart-microservice-nodejs
+
+      - name: Push Cart Image
+        run: |
+          docker push \
+          663566123253.dkr.ecr.ap-south-2.amazonaws.com/devops:cart-github-v2
+
       - name: Test SSH Connection
         uses: appleboy/ssh-action@v1.0.3
         with:
