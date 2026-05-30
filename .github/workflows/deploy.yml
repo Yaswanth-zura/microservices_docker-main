@@ -45,5 +45,17 @@ jobs:
           docker push \
           663566123253.dkr.ecr.ap-south-2.amazonaws.com/devops:ui-github
 
+      - name: Test SSH Connection
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            echo "Connected to EC2 Successfully"
+            hostname
+            whoami
+            docker --version
+
       - name: Print Message
         run: echo "GitHub Actions is working!"
