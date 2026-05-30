@@ -37,13 +37,13 @@ jobs:
       - name: Build UI Image
         run: |
           docker build \
-          -t 663566123253.dkr.ecr.ap-south-2.amazonaws.com/devops:ui-github \
+          -t 663566123253.dkr.ecr.ap-south-2.amazonaws.com/devops:ui-github-v2 \
           ./ui-web-app-reactjs
 
       - name: Push UI Image
         run: |
           docker push \
-          663566123253.dkr.ecr.ap-south-2.amazonaws.com/devops:ui-github
+          663566123253.dkr.ecr.ap-south-2.amazonaws.com/devops:ui-github-v2
 
       - name: Test SSH Connection
         uses: appleboy/ssh-action@v1.0.3
