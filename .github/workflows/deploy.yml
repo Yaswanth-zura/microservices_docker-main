@@ -57,5 +57,30 @@ jobs:
             whoami
             docker --version
 
+      - name: Deploy UI Container
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+
+            docker pull 663566123253.dkr.ecr.ap-south-2.amazonaws.com/devops:ui-github
+
+            docker stop ui || true
+
+            docker rm ui || true
+
+            docker run -d \
+              --network micro-net \
+              --name ui \
+              -p 8080:8080 \
+              -e HOST=0.0.0.0 \
+              -e PORT=8080 \
+              -e WDS_SOCKET_PORT=8080 \
+              663566123253.dkr.ecr.ap-south-2.amazonaws.com/devops:ui-github
+
+            docker ps
+
       - name: Print Message
         run: echo "GitHub Actions is working!"
