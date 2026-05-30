@@ -27,5 +27,23 @@ jobs:
       - name: Verify AWS Login
         run: aws sts get-caller-identity
 
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+        
+      - name: Docker Version
+        run: docker --version
+
+      - name: Build UI Image
+        run: |
+          docker build \
+          -t 663566123253.dkr.ecr.ap-south-2.amazonaws.com/devops:ui-github \
+          ./ui-web-app-reactjs
+
+      - name: Push UI Image
+        run: |
+          docker push \
+          663566123253.dkr.ecr.ap-south-2.amazonaws.com/devops:ui-github
+
       - name: Print Message
         run: echo "GitHub Actions is working!"
