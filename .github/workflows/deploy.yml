@@ -128,12 +128,62 @@ jobs:
             663566123253.dkr.ecr.ap-south-2.amazonaws.com
 
             docker pull 663566123253.dkr.ecr.ap-south-2.amazonaws.com/devops:ui-github-v2
+            docker pull 663566123253.dkr.ecr.ap-south-2.amazonaws.com/devops:zuul-github-v2
+            docker pull 663566123253.dkr.ecr.ap-south-2.amazonaws.com/devops:offers-github-v2
+            docker pull 663566123253.dkr.ecr.ap-south-2.amazonaws.com/devops:shoes-github-v2
+            docker pull 663566123253.dkr.ecr.ap-south-2.amazonaws.com/devops:wishlist-github-v2
+            docker pull 663566123253.dkr.ecr.ap-south-2.amazonaws.com/devops:cart-github-v2
+
 
             docker stop ui || true
+            docker stop zuul || true
+            docker stop offers || true
+            docker stop shoes || true
+            docker stop wishlist || true
+            docker stop cart || true
 
+       
             docker rm ui || true
+            docker rm zuul || true
+            docker rm offers || true
+            docker rm shoes || true
+            docker rm wishlist || true
+            docker rm cart || true
+
 
             docker image prune -f
+
+            
+
+            docker run -d \
+              --network micro-net \
+              --name offers \
+              -p 1001:1001 \
+              663566123253.dkr.ecr.ap-south-2.amazonaws.com/devops:offers-github-v2
+
+            docker run -d \
+              --network micro-net \
+              --name shoes \
+              -p 1002:1002 \
+              663566123253.dkr.ecr.ap-south-2.amazonaws.com/devops:shoes-github-v2
+              
+            docker run -d \
+              --network micro-net \
+              --name wishlist \
+              -p 1003:1003 \
+              663566123253.dkr.ecr.ap-south-2.amazonaws.com/devops:wishlist-github-v2
+
+            docker run -d \
+              --network micro-net \
+              --name cart \
+              -p 1004:1004 \
+              663566123253.dkr.ecr.ap-south-2.amazonaws.com/devops:cart-github-v2
+            
+            docker run -d \
+              --network micro-net \
+              --name zuul \
+              -p 9999:9999 \
+              663566123253.dkr.ecr.ap-south-2.amazonaws.com/devops:zuul-github-v2
 
             docker run -d \
               --network micro-net \
@@ -145,6 +195,8 @@ jobs:
               663566123253.dkr.ecr.ap-south-2.amazonaws.com/devops:ui-github-v2
 
             docker ps
+            docker ps -a
+            docker network inspect micro-net
 
       - name: Print Message
         run: echo "GitHub Actions is working!"
